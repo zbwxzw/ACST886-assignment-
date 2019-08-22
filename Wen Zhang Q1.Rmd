@@ -1,0 +1,21 @@
+---
+title: "ACST886 assignment1 Q1"
+author: "Wen Zhang"
+date: "2019Äê8ÔÂ22ÈÕ"
+output: html_document
+---
+
+### Q1
+
+The loan amount is 600000, $i=3.5%$, $n=30$, $v=1/(1+i)$.
+Loan amount is equal to the present value at the outset of the repayments.
+The yearly repayment is x where
+$600000 = x*(1+v^1+v^2+...+v^30) = x*(1-v^n)/i$
+Using uniroot function, the annual repayment is $32622.8
+
+```{r}
+i=.035; n=30; v=1/(1+i)
+f1<-function(x) {600000-x*(1-(1/(1+i))^n)/i}
+x <- uniroot(f1,c(30000,40000), tol=0.0001)
+x$root
+```

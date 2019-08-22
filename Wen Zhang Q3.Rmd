@@ -1,0 +1,52 @@
+---
+title: "Untitled"
+author: "Wen Zhang"
+date: "2019Äê8ÔÂ22ÈÕ"
+output: html_document
+---
+
+### Q3
+
+
+#### part(a)
+
+Total value is the present value of the commission at 19 March 2019.
+commission amount is 1000, $n=30$, $i=3.5%$, $v=1/(1+i)$
+$total value = 1000*(1-v^n)/i$
+
+```{r}
+totalvalue<-1000*(1-(1/(1+i))^30)/i
+totalvalue
+```
+
+#### part(b)
+
+The effective interest rate that bank requires on its funds is lower than the 3.5% p.a.
+The total amount needs to pay increases (=loan + total value of commission in part a).However, the the term and annual payments do not change, which means Bill need to pay more on capital each year. Therefore, the part of interest will decrease annd effective interest rate is lower .
+
+#### part(c)
+
+The total amount is equal to the amount of loan plus the total value of commission.
+The total loan amount is equal to the present values of annual payment during 30 years.
+$loan = annual payment*(1+v^1+v^2+...+v^30) = x*(1-v^n)/i$
+Using uniroot function, effective interest rate is 3.26%
+
+```{r}
+loan=600000; n=30
+totalamount=loan+totalvalue
+f3<-function(i) {totalamount-x$root*(1-(1/(1+i))^n)/i}
+i <- uniroot(f3,c(0.01,0.035), tol=0.0001)
+i$root
+```
+
+#### part(d)
+
+The amount of loan is equal to the present value of new annual payment in 30-year period, using the interest rate calculated in part (c).
+Using uniroot function, the new annual payment is $31651.45.
+Calculating the difference between the original annual payment and the new annual payment, divided the original annual payment. The annual payment decreases by 2.98%
+```{r}
+f4<-function(x.) {loan-x.*(1-(1/(1+i$root))^n)/i$root}
+x. <- uniroot(f4,c(30000,40000), tol=0.0001)
+x.$root
+(x$root-x.$root)/x$root
+```
